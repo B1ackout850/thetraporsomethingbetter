@@ -9,7 +9,7 @@
         :root {
             --trap-bg: linear-gradient(45deg, #ff007f, #ffaa00, #00ffcc);
             --trap-text: #ffffff;
-            --symbiotic-bg: #121212; /* Dark mode saves OLED energy! */
+            --symbiotic-bg: #121212; 
             --symbiotic-text: #e0e0e0;
             --accent: #4caf50;
         }
@@ -21,20 +21,18 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         /* --- THE TRAP (Extractive Model) --- */
         #the-trap {
-            min-height: 150vh; /* Forces the user to scroll */
+            min-height: 180vh; 
             background: var(--trap-bg);
             background-size: 400% 400%;
-            animation: gradientNoise 5s ease infinite;
+            animation: gradientNoise 3s ease infinite; /* Sped up the chaos */
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 2rem 1rem;
+            padding: 6rem 1rem 2rem 1rem;
             position: relative;
             overflow: hidden;
         }
@@ -43,6 +41,29 @@
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
+        }
+
+        /* Fake Navigation Bar */
+        .fake-nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1rem;
+            z-index: 10;
+        }
+
+        .fake-nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            background: #ff007f;
+            border-radius: 4px;
         }
 
         .noise-card {
@@ -59,7 +80,55 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
         }
 
-        /* Annoying Sticky Banner */
+        .trap-btn {
+            background: #ffaa00;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 90%;
+        }
+
+        /* The Obnoxious Pop-Up */
+        .modal-popup {
+            position: fixed;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            color: black;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            text-align: center;
+            z-index: 99;
+            width: 90%;
+            max-width: 350px;
+            border: 5px solid #ff0000;
+        }
+
+        .runaway-x {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff0000;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s; /* This allows it to dodge the mouse */
+        }
+
+        .runaway-x:hover {
+            transform: translate(-50px, 50px);
+        }
+
         .cookie-banner {
             position: fixed;
             bottom: 0;
@@ -83,11 +152,7 @@
             border-top: 5px solid #000;
         }
 
-        #transition h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: #fff;
-        }
+        #transition h1 { font-size: 2.5rem; margin-bottom: 1rem; color: #fff; }
 
         /* --- THE SYMBIOSIS (Ethical Model) --- */
         #the-symbiosis {
@@ -109,12 +174,7 @@
             margin-top: 3rem;
         }
 
-        /* Desktop Scaling */
-        @media (min-width: 768px) {
-            .grid-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
+        @media (min-width: 768px) { .grid-container { grid-template-columns: repeat(2, 1fr); } }
 
         .pillar-card {
             background: #1e1e1e;
@@ -124,36 +184,39 @@
             transition: transform 0.3s ease;
         }
 
-        .pillar-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .pillar-card h2 {
-            color: #fff;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .pillar-card p {
-            line-height: 1.6;
-            color: #b0b0b0;
-        }
+        .pillar-card:hover { transform: translateY(-5px); }
+        .pillar-card h2 { color: #fff; margin-bottom: 1rem; font-size: 1.5rem; }
+        .pillar-card p { line-height: 1.6; color: #b0b0b0; }
     </style>
 </head>
 <body>
 
     <section id="the-trap">
+        <nav class="fake-nav">
+            <a href="#the-trap">Home</a>
+            <a href="#the-trap">Home</a>
+            <a href="#the-trap">Profile</a>
+            <a href="#the-trap">Home</a>
+        </nav>
+
+        <div class="modal-popup" id="annoying-modal">
+            <button class="runaway-x" onclick="alert('Error: You must watch a 30 second unskippable ad to close this ad.')">X</button>
+            <h2 style="margin-bottom: 10px; color: #ff0000;">WAIT! Don't scroll!</h2>
+            <p style="margin-bottom: 15px; font-size: 0.9rem;">Sign up for our newsletter to receive 40 emails a day.</p>
+            <button class="trap-btn" style="background: #4caf50; color: white;" onclick="alert('Thanks for your data!')">Accept All Offerings</button>
+            <button class="trap-btn" style="background: #ccc;" onclick="alert('Ticket Automatically Closed. Resolution: Working as intended.')">Submit Service Desk Ticket to Close</button>
+        </div>
+
         <div class="noise-card">
-            <h2>🔥 TRENDING NOW 🔥</h2>
-            <p>Keep scrolling! Don't miss out on this algorithmic feed designed to waste your battery and time.</p>
+            <h2>💎 Premium Plus Tier 💎</h2>
+            <p style="margin: 15px 0; font-size: 0.9rem;">Subscribe for $29.99/mo! <br><br><i>*By clicking subscribe, you agree that we may alter this deal, remove features, and increase the price at any time without notifying you.</i></p>
+            <button class="trap-btn" onclick="alert('Processing Payment... Just kidding, we already charged you.')">Subscribe Now</button>
+            <button class="trap-btn" onclick="alert('Error: Cannot decline at this time.')">Decline</button>
         </div>
-        <div class="noise-card" style="margin-top: 20vh;">
+
+        <div class="noise-card" style="margin-top: 10vh;">
             <h2>Sponsored Content</h2>
-            <p>We are tracking your eye movements to serve you better ads.</p>
-        </div>
-        <div class="noise-card" style="margin-top: 20vh;">
-            <h2>Wait, don't leave!</h2>
-            <p>Generate 50 AI images you don't need, right now!</p>
+            <p>We are tracking your eye movements to serve you better ads. Please blink to verify identity.</p>
         </div>
 
         <div class="cookie-banner">
@@ -196,15 +259,18 @@
     </section>
 
     <script>
-        // Simple script to hide the annoying banner once they reach the safe zone
+        // Hide the annoying banners/modals once they reach the safe zone
         window.addEventListener('scroll', () => {
             const banner = document.querySelector('.cookie-banner');
+            const modal = document.getElementById('annoying-modal');
             const transitionTop = document.getElementById('transition').getBoundingClientRect().top;
             
             if (transitionTop < window.innerHeight) {
                 banner.style.display = 'none';
+                modal.style.display = 'none';
             } else {
                 banner.style.display = 'block';
+                modal.style.display = 'block';
             }
         });
     </script>
