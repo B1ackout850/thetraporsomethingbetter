@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Digital Habitat</title>
+    <style>
+        /* --- GLOBAL STYLES --- */
+        :root {
+            --trap-bg: linear-gradient(45deg, #ff007f, #ffaa00, #00ffcc);
+            --trap-text: #ffffff;
+            --symbiotic-bg: #121212; /* Dark mode saves OLED energy! */
+            --symbiotic-text: #e0e0e0;
+            --accent: #4caf50;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* --- THE TRAP (Extractive Model) --- */
+        #the-trap {
+            min-height: 150vh; /* Forces the user to scroll */
+            background: var(--trap-bg);
+            background-size: 400% 400%;
+            animation: gradientNoise 5s ease infinite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes gradientNoise {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .noise-card {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            color: var(--trap-text);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Annoying Sticky Banner */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #ff0000;
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            font-weight: bold;
+            z-index: 100;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
+        }
+
+        /* --- THE TRANSITION --- */
+        #transition {
+            background-color: var(--symbiotic-bg);
+            color: var(--symbiotic-text);
+            text-align: center;
+            padding: 10vh 2rem;
+            border-top: 5px solid #000;
+        }
+
+        #transition h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        /* --- THE SYMBIOSIS (Ethical Model) --- */
+        #the-symbiosis {
+            background-color: var(--symbiotic-bg);
+            color: var(--symbiotic-text);
+            min-height: 100vh;
+            padding: 4rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            max-width: 1000px;
+            width: 100%;
+            margin-top: 3rem;
+        }
+
+        /* Desktop Scaling */
+        @media (min-width: 768px) {
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .pillar-card {
+            background: #1e1e1e;
+            border-left: 4px solid var(--accent);
+            padding: 2rem;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .pillar-card h2 {
+            color: #fff;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .pillar-card p {
+            line-height: 1.6;
+            color: #b0b0b0;
+        }
+    </style>
+</head>
+<body>
+
+    <section id="the-trap">
+        <div class="noise-card">
+            <h2>🔥 TRENDING NOW 🔥</h2>
+            <p>Keep scrolling! Don't miss out on this algorithmic feed designed to waste your battery and time.</p>
+        </div>
+        <div class="noise-card" style="margin-top: 20vh;">
+            <h2>Sponsored Content</h2>
+            <p>We are tracking your eye movements to serve you better ads.</p>
+        </div>
+        <div class="noise-card" style="margin-top: 20vh;">
+            <h2>Wait, don't leave!</h2>
+            <p>Generate 50 AI images you don't need, right now!</p>
+        </div>
+
+        <div class="cookie-banner">
+            WE VALUE YOUR PRIVACY (By selling it). ACCEPT ALL COOKIES TO CONTINUE SCROLLING!
+        </div>
+    </section>
+
+    <div id="transition">
+        <h1>Exhausting, isn't it?</h1>
+        <p>Let's build a better habitat. Scroll down to enter a symbiotic environment.</p>
+    </div>
+
+    <section id="the-symbiosis">
+        <div style="text-align: center; max-width: 800px;">
+            <h2 style="font-size: 2rem; color: #fff; margin-bottom: 1rem;">Digital Stewardship & DevOps</h2>
+            <p style="line-height: 1.8; font-size: 1.1rem;">A digital environment should be a place where users thrive, not a resource to be extracted. By aligning business goals with ethical architecture, we build platforms that are sustainable for both the user and the planet.</p>
+        </div>
+
+        <div class="grid-container">
+            <div class="pillar-card">
+                <h2>Ethics & Sustainability</h2>
+                <p><strong>Low-Compute UX & Grid-Aware Design.</strong> AI is powerful, but computationally expensive. We advocate for reducing generative AI usage to save water and energy, while scheduling intensive server updates during times of renewable energy surplus.</p>
+            </div>
+            
+            <div class="pillar-card">
+                <h2>User Experience & Visual Design</h2>
+                <p><strong>The Symbiotic Model.</strong> Compare Valve's user-first ecosystem to Microsoft's extractive subscription hikes. We prioritize intentional, friction-free design that respects the user's agency and goals, naturally driving loyalty instead of forcing it.</p>
+            </div>
+
+            <div class="pillar-card">
+                <h2>Content & Information Architecture</h2>
+                <p><strong>Intuitive Navigation.</strong> Good IA is inherently sustainable. When users can easily find what they need through logical structures, there is no need for high-compute AI chatbots to act as band-aids for poor design.</p>
+            </div>
+
+            <div class="pillar-card">
+                <h2>Systems Design & Engineering</h2>
+                <p><strong>Maintainable Environments.</strong> Building clean, modular architectures reduces technical debt. We construct reliable infrastructures that prioritize data privacy, efficient resource allocation, and long-term stability.</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Simple script to hide the annoying banner once they reach the safe zone
+        window.addEventListener('scroll', () => {
+            const banner = document.querySelector('.cookie-banner');
+            const transitionTop = document.getElementById('transition').getBoundingClientRect().top;
+            
+            if (transitionTop < window.innerHeight) {
+                banner.style.display = 'none';
+            } else {
+                banner.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
