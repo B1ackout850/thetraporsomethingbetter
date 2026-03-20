@@ -12,6 +12,423 @@
             --symbiotic-bg: #121212; 
             --symbiotic-text: #e0e0e0;
             --accent: #4caf50;
+            --focus-outline: 3px solid #4caf50; /* High contrast focus for accessibility */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        /* Keyboard Focus Accessibility */
+        *:focus-visible {
+            outline: var(--focus-outline);
+            outline-offset: 2px;
+        }
+
+        /* --- THE TRAP (Extractive Model) --- */
+        #the-trap {
+            min-height: 180vh; 
+            background: var(--trap-bg);
+            background-size: 400% 400%;
+            animation: gradientNoise 3s ease infinite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 6rem 1rem 2rem 1rem;
+            position: relative;
+        }
+
+        @keyframes gradientNoise {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Fake Navigation Bar */
+        .fake-nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1rem;
+            z-index: 10;
+        }
+
+        .fake-nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            background: #ff007f;
+            border-radius: 4px;
+        }
+
+        .noise-card {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            color: var(--trap-text);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .trap-btn {
+            background: #ffaa00;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 90%;
+        }
+
+        /* The Obnoxious Pop-Up */
+        .modal-popup {
+            position: fixed;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            color: black;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            text-align: center;
+            z-index: 99;
+            width: 90%;
+            max-width: 350px;
+            border: 5px solid #ff0000;
+        }
+
+        .runaway-x {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff0000;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .runaway-x:hover { transform: translate(-50px, 50px); }
+
+        /* Fake AI Chatbot */
+        .fake-chatbot {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 280px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 2px solid #00ffcc;
+            z-index: 98;
+            color: black;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: #00ffcc;
+            color: #000;
+            font-weight: bold;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .chat-body {
+            padding: 15px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #ff0000;
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            font-weight: bold;
+            z-index: 100;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
+        }
+
+        /* --- THE TRANSITION --- */
+        #transition {
+            /* Creates a smooth gradient fade from the chaotic pink to the dark mode */
+            background: linear-gradient(to bottom, #ff007f, var(--symbiotic-bg));
+            color: var(--symbiotic-text);
+            text-align: center;
+            padding: 15vh 2rem 5vh 2rem;
+        }
+
+        #transition h1 { font-size: 2.5rem; margin-bottom: 1rem; color: #fff; }
+
+        /* --- THE SYMBIOSIS (Ethical Model) --- */
+        #the-symbiosis {
+            background-color: var(--symbiotic-bg);
+            color: var(--symbiotic-text);
+            min-height: 100vh;
+            padding: 2rem 2rem 6rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Accessible Tab Interface */
+        .tabs-container {
+            width: 100%;
+            max-width: 800px;
+            margin-top: 3rem;
+        }
+
+        .tab-list {
+            display: flex;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #333;
+            margin-bottom: 2rem;
+        }
+
+        .tab-button {
+            background: transparent;
+            color: #888;
+            border: none;
+            padding: 1rem 1.5rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-button[aria-selected="true"] {
+            color: var(--accent);
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .tab-button:hover { color: #fff; }
+
+        .tab-panel {
+            display: none;
+            background: #1e1e1e;
+            padding: 2.5rem;
+            border-radius: 8px;
+            line-height: 1.8;
+            border-left: 4px solid var(--accent);
+        }
+
+        .tab-panel[data-active="true"] { display: block; }
+
+        .tab-panel h2 { color: #fff; margin-bottom: 1rem; font-size: 1.8rem; }
+        
+        .placeholder-img {
+            width: 100%;
+            height: 200px;
+            background: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        /* References Section */
+        .references {
+            width: 100%;
+            max-width: 800px;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        .references h3 { color: #fff; margin-bottom: 1rem; }
+        .references p { margin-bottom: 0.8rem; padding-left: 2em; text-indent: -2em; /* APA hanging indent */ }
+        .references a { color: var(--accent); text-decoration: none; }
+        .references a:hover { text-decoration: underline; }
+
+    </style>
+</head>
+<body>
+
+    <section id="the-trap">
+        <nav class="fake-nav">
+            <a href="#the-trap">Home</a>
+            <a href="#the-trap">Home</a>
+            <a href="#the-trap">Profile</a>
+            <a href="#the-trap">Home</a>
+        </nav>
+
+        <div class="modal-popup" id="annoying-modal">
+            <button class="runaway-x" onclick="alert('Error: You must watch a 30 second unskippable ad to close this ad.')">X</button>
+            <h2 style="margin-bottom: 10px; color: #ff0000;">WAIT! Don't scroll!</h2>
+            <p style="margin-bottom: 15px; font-size: 0.9rem;">Sign up for our newsletter to receive 40 emails a day.</p>
+            <button class="trap-btn" style="background: #4caf50; color: white;" onclick="alert('Thanks for your data!')">Accept All Offerings</button>
+            <button class="trap-btn" style="background: #ccc;" onclick="alert('Ticket Automatically Closed. Resolution: Working as intended.')">Submit Service Desk Ticket to Close</button>
+        </div>
+
+        <div class="noise-card">
+            <h2>💎 Premium Plus Tier 💎</h2>
+            <p style="margin: 15px 0; font-size: 0.9rem;">Subscribe for $29.99/mo! <br><br><i>*By clicking subscribe, you agree that we may alter this deal, remove features, and increase the price at any time without notifying you.</i></p>
+            <button class="trap-btn" onclick="alert('Processing Payment... Just kidding, we already charged you.')">Subscribe Now</button>
+            <button class="trap-btn" onclick="alert('Error: Cannot decline at this time.')">Decline</button>
+        </div>
+
+        <div class="noise-card" style="margin-top: 10vh;">
+            <h2>Sponsored Content</h2>
+            <p>We are tracking your eye movements to serve you better ads. Please blink to verify identity.</p>
+        </div>
+
+        <div class="fake-chatbot" id="fake-chatbot">
+            <div class="chat-header">✨ AI Assistant ✨</div>
+            <div class="chat-body">
+                <p>Hello! I was put here to cover up for the complete lack of effort put into the information architecture of this page. How can I confidently misunderstand your query today?</p>
+            </div>
+        </div>
+
+        <div class="cookie-banner">
+            WE VALUE YOUR PRIVACY (By selling it). ACCEPT ALL COOKIES TO CONTINUE SCROLLING!
+        </div>
+    </section>
+
+    <div id="transition">
+        <h1>Exhausting, isn't it?</h1>
+        <p>Let's build a better habitat. Scroll down to enter a symbiotic environment.</p>
+    </div>
+
+    <main id="the-symbiosis">
+        <div style="text-align: center; max-width: 800px;">
+            <h2 style="font-size: 2rem; color: #fff; margin-bottom: 1rem;">Digital Stewardship & DevOps</h2>
+            <p style="line-height: 1.8; font-size: 1.1rem;">A digital environment should be a place where users thrive, not a resource to be extracted. By aligning business goals with ethical architecture, we build platforms that are sustainable for both the user and the planet.</p>
+        </div>
+
+        <div class="tabs-container">
+            <div class="tab-list" role="tablist" aria-label="Strategic Design Pillars">
+                <button class="tab-button" role="tab" aria-selected="true" aria-controls="panel-ethics" id="tab-ethics">Ethics & Sustainability</button>
+                <button class="tab-button" role="tab" aria-selected="false" aria-controls="panel-ux" id="tab-ux">User Experience</button>
+                <button class="tab-button" role="tab" aria-selected="false" aria-controls="panel-ia" id="tab-ia">Information Architecture</button>
+                <button class="tab-button" role="tab" aria-selected="false" aria-controls="panel-systems" id="tab-systems">Systems Design</button>
+            </div>
+
+            <div class="tab-panel" id="panel-ethics" role="tabpanel" tabindex="0" aria-labelledby="tab-ethics" data-active="true">
+                <h2>Ethics & Sustainability</h2>
+                <p>Digital environments do not exist in a vacuum; they consume vast physical resources. AI models, while powerful, are computationally expensive and require massive amounts of water for server cooling. We advocate for <strong>Low-Compute UX</strong>—reducing the reliance on generative AI by building environments that are naturally intuitive.</p>
+                <p style="margin-top: 1rem;">Furthermore, sustainable DevOps means implementing <strong>Grid-Aware Computing</strong>. By scheduling intensive server updates and backups during periods of renewable energy surplus on the local grid, we drastically reduce the carbon footprint of our operations.</p>
+                
+                <div class="placeholder-img" role="img" aria-label="A chart showing peak energy grid times aligned with scheduled server maintenance.">
+                    [Image: Server Energy Usage Graph Placeholder. Alt text applied.]
+                </div>
+            </div>
+
+            <div class="tab-panel" id="panel-ux" role="tabpanel" tabindex="0" aria-labelledby="tab-ux">
+                <h2>User Experience & Visual Design</h2>
+                <p>We believe in the <strong>Symbiotic Model</strong>. Consider the difference between Valve's ecosystem and Microsoft's recent subscription models. Valve retains a massive market share by prioritizing user utility—offering free multiplayer, deep community integration, and frictionless software access. They act as a host, not a parasite.</p>
+                <p style="margin-top: 1rem;">Conversely, sudden price hikes or forced ad integrations represent the extractive model, driving user churn. Good UX aligns the needs of the business with the agency of the user, replacing dark patterns with intentional, respectful design.</p>
+            </div>
+
+            <div class="tab-panel" id="panel-ia" role="tabpanel" tabindex="0" aria-labelledby="tab-ia">
+                <h2>Content & Information Architecture</h2>
+                <p>Good Information Architecture (IA) is inherently sustainable. When a digital environment's navigation is logical and predictable, users can execute their goals quickly without getting lost in algorithmic loops or requiring high-compute AI assistants to guide them.</p>
+                <p style="margin-top: 1rem;">Structure should always precede decoration. By grouping related functions and establishing clear hierarchies, we empower users to be self-sufficient. This respects both their time and our server resources.</p>
+            </div>
+
+            <div class="tab-panel" id="panel-systems" role="tabpanel" tabindex="0" aria-labelledby="tab-systems">
+                <h2>Systems Design, Engineering & Organization</h2>
+                <p>A well-architected system is easier to maintain, requiring fewer operational resources over its lifecycle. As DevOps architects, we prioritize clean, modular codebases that mitigate technical debt.</p>
+                <p style="margin-top: 1rem;">Ethical systems design also means building privacy directly into the architecture. Instead of retrofitting security to protect harvested data, we build environments that minimize data collection by default, ensuring the platform remains a safe habitat for its inhabitants.</p>
+            </div>
+        </div>
+
+        <div class="references">
+            <h3>References</h3>
+            <p>Carbon Aware. (n.d.). <i>Carbon aware primer</i>. Retrieved from <a href="https://www.carbonaware.dev/blog/carbon-aware-primer" target="_blank">https://www.carbonaware.dev/blog/carbon-aware-primer</a></p>
+            
+            <p>Design Bootcamp. (n.d.). <i>Designing sustainable user experiences: The intersection of UX and environmental responsibility in IT</i>. Medium. Retrieved from <a href="https://medium.com/design-bootcamp/designing-sustainable-user-experiences-the-intersection-of-ux-and-environmental-responsibility-in-ef8fb989d12a" target="_blank">https://medium.com/design-bootcamp/designing-sustainable-user-experiences-the-intersection-of-ux-and-environmental-responsibility-in-ef8fb989d12a</a></p>
+            
+            <p>IdentityE2E. (n.d.). <i>The impact of visual design on user experience</i>. Retrieved from <a href="https://www.identitye2e.com/insight/the-impact-of-visual-design-on-user-experience" target="_blank">https://www.identitye2e.com/insight/the-impact-of-visual-design-on-user-experience</a></p>
+            
+            <p>UX Planet. (n.d.). <i>Information architecture design: A step-by-step guide</i>. Retrieved from <a href="https://uxplanet.org/information-architecture-design-a-step-by-step-guide-41dcd4405ee3" target="_blank">https://uxplanet.org/information-architecture-design-a-step-by-step-guide-41dcd4405ee3</a></p>
+            
+            <p>XDA Developers. (n.d.). <i>Valve Steam monopoly: Real gamers chose it</i>. Retrieved from <a href="https://www.xda-developers.com/valve-steam-monopoly-real-gamers-chose/#:~:text=Under%20U.S.%20law%2C%20having%20a,through%20underhanded%20or%20predatory%20tactics" target="_blank">https://www.xda-developers.com/valve-steam-monopoly-real-gamers-chose/</a></p>
+        </div>
+    </main>
+
+    <script>
+        // --- TRAP LOGIC ---
+        // Hide annoying elements once they reach the safe zone
+        window.addEventListener('scroll', () => {
+            const banner = document.querySelector('.cookie-banner');
+            const modal = document.getElementById('annoying-modal');
+            const chatbot = document.getElementById('fake-chatbot');
+            const transitionTop = document.getElementById('transition').getBoundingClientRect().top;
+            
+            if (transitionTop < window.innerHeight) {
+                banner.style.display = 'none';
+                modal.style.display = 'none';
+                chatbot.style.display = 'none';
+            } else {
+                banner.style.display = 'block';
+                modal.style.display = 'block';
+                chatbot.style.display = 'block';
+            }
+        });
+
+        // --- ACCESSIBLE TABS LOGIC ---
+        const tabs = document.querySelectorAll('.tab-button');
+        const panels = document.querySelectorAll('.tab-panel');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Deactivate all tabs and panels
+                tabs.forEach(t => t.setAttribute('aria-selected', 'false'));
+                panels.forEach(p => p.removeAttribute('data-active'));
+
+                // Activate clicked tab and corresponding panel
+                tab.setAttribute('aria-selected', 'true');
+                const panelId = tab.getAttribute('aria-controls');
+                document.getElementById(panelId).setAttribute('data-active', 'true');
+            });
+        });
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Digital Habitat</title>
+    <style>
+        /* --- GLOBAL STYLES --- */
+        :root {
+            --trap-bg: linear-gradient(45deg, #ff007f, #ffaa00, #00ffcc);
+            --trap-text: #ffffff;
+            --symbiotic-bg: #121212; 
+            --symbiotic-text: #e0e0e0;
+            --accent: #4caf50;
         }
 
         * {
