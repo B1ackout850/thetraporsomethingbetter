@@ -12,6 +12,7 @@
             --symbiotic-bg: #121212; 
             --symbiotic-text: #e0e0e0;
             --accent: #4caf50;
+            --focus-outline: 3px solid #4caf50; /* Accessibility focus ring */
         }
 
         * {
@@ -22,6 +23,12 @@
         }
 
         html { scroll-behavior: smooth; }
+
+        /* Keyboard Accessibility */
+        *:focus-visible {
+            outline: var(--focus-outline);
+            outline-offset: 2px;
+        }
 
         /* --- THE TRAP (Extractive Model) --- */
         #the-trap {
@@ -43,7 +50,6 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Fake Navigation Bar */
         .fake-nav {
             position: absolute;
             top: 0;
@@ -92,7 +98,6 @@
             width: 90%;
         }
 
-        /* The Obnoxious Pop-Up */
         .modal-popup {
             position: fixed;
             top: 30%;
@@ -129,7 +134,6 @@
             transform: translate(-50px, 50px);
         }
 
-        /* Fake AI Chatbot */
         .fake-chatbot {
             position: fixed;
             bottom: 80px;
@@ -194,33 +198,63 @@
             align-items: center;
         }
 
-        .grid-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            max-width: 1000px;
+        /* Accessible & Mobile-Scalable Tabs */
+        .tabs-container {
             width: 100%;
+            max-width: 1000px;
             margin-top: 3rem;
         }
 
-        @media (min-width: 768px) { .grid-container { grid-template-columns: repeat(2, 1fr); } }
-
-        .pillar-card {
-            background: #1e1e1e;
-            border-left: 4px solid var(--accent);
-            padding: 2rem;
-            border-radius: 8px;
-            transition: transform 0.3s ease;
+        .tab-list {
+            display: flex;
+            flex-wrap: nowrap; /* Forces tabs into a single line */
+            overflow-x: auto; /* Enables horizontal scroll on small screens */
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+            border-bottom: 2px solid #333;
+            margin-bottom: 2rem;
+            scrollbar-width: none; /* Hides scrollbar in Firefox */
         }
 
-        .pillar-card:hover { transform: translateY(-5px); }
-        .pillar-card h2 { color: #fff; margin-bottom: 1rem; font-size: 1.5rem; }
-        .pillar-card p { line-height: 1.6; color: #b0b0b0; }
+        .tab-list::-webkit-scrollbar {
+            display: none; /* Hides scrollbar in Chrome/Safari */
+        }
+
+        .tab-button {
+            background: transparent;
+            color: #888;
+            border: none;
+            padding: 1rem 1.5rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 0 0 auto; /* Prevents buttons from squishing */
+            white-space: nowrap; /* Keeps text on one line */
+        }
+
+        .tab-button[aria-selected="true"] {
+            color: var(--accent);
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .tab-button:hover { color: #fff; }
+
+        .tab-panel {
+            display: none;
+            background: #1e1e1e;
+            padding: 2.5rem;
+            border-radius: 8px;
+            line-height: 1.8;
+            border-left: 4px solid var(--accent);
+        }
+
+        .tab-panel[data-active="true"] { display: block; }
+        .tab-panel h2 { color: #fff; margin-bottom: 1rem; font-size: 1.8rem; }
 
         /* References Section */
         .references {
             width: 100%;
-            max-width: 1000px; /* Matches the grid width */
+            max-width: 1000px; 
             margin-top: 4rem;
             padding-top: 2rem;
             border-top: 1px solid #333;
@@ -229,7 +263,7 @@
         }
 
         .references h3 { color: #fff; margin-bottom: 1rem; }
-        .references p { margin-bottom: 0.8rem; padding-left: 2em; text-indent: -2em; /* APA hanging indent */ }
+        .references p { margin-bottom: 0.8rem; padding-left: 2em; text-indent: -2em; }
         .references a { color: var(--accent); text-decoration: none; }
         .references a:hover { text-decoration: underline; }
     </style>
@@ -287,25 +321,36 @@
             <p style="line-height: 1.8; font-size: 1.1rem;">A digital environment should be a place where users thrive, not a resource to be extracted. By aligning business goals with ethical architecture, we build platforms that are sustainable for both the user and the planet.</p>
         </div>
 
-        <div class="grid-container">
-            <div class="pillar-card">
+        <div class="tabs-container">
+            <div class="tab-list" role="tablist" aria-label="Strategic Design Pillars">
+                <button class="tab-button" role="tab" aria-selected="true" aria-controls="panel-ethics" id="tab-ethics">Ethics & Sustainability</button>
+                <button class="tab-button" role="tab" aria-selected="false" aria-controls="panel-ux" id="tab-ux">User Experience</button>
+                <button class="tab-button" role="tab" aria-selected="false" aria-controls="panel-ia" id="tab-ia">Information Architecture</button>
+                <button class="tab-button" role="tab" aria-selected="false" aria-controls="panel-systems" id="tab-systems">Systems Design</button>
+            </div>
+
+            <div class="tab-panel" id="panel-ethics" role="tabpanel" tabindex="0" aria-labelledby="tab-ethics" data-active="true">
                 <h2>Ethics & Sustainability</h2>
-                <p><strong>Low-Compute UX & Grid-Aware Design.</strong> AI is powerful, but computationally expensive. We advocate for reducing generative AI usage to save water and energy, while scheduling intensive server updates during times of renewable energy surplus.</p>
+                <p>Digital environments do not exist in a vacuum; they consume vast physical resources. AI models, while powerful, are computationally expensive and require massive amounts of water for server cooling. We advocate for <strong>Low-Compute UX</strong>—reducing the reliance on generative AI by building environments that are naturally intuitive.</p>
+                <p style="margin-top: 1rem;">Furthermore, sustainable DevOps means implementing <strong>Grid-Aware Computing</strong>. By scheduling intensive server updates and backups during periods of renewable energy surplus on the local grid, we drastically reduce the carbon footprint of our operations.</p>
             </div>
-            
-            <div class="pillar-card">
+
+            <div class="tab-panel" id="panel-ux" role="tabpanel" tabindex="0" aria-labelledby="tab-ux">
                 <h2>User Experience & Visual Design</h2>
-                <p><strong>The Symbiotic Model.</strong> Compare Valve's user-first ecosystem to Microsoft's extractive subscription hikes. We prioritize intentional, friction-free design that respects the user's agency and goals, naturally driving loyalty instead of forcing it.</p>
+                <p>We believe in the <strong>Symbiotic Model</strong>. Consider the difference between Valve's ecosystem and Microsoft's recent subscription models. Valve retains a massive market share by prioritizing user utility—offering free multiplayer, deep community integration, and frictionless software access. They act as a host, not a parasite.</p>
+                <p style="margin-top: 1rem;">Conversely, sudden price hikes or forced ad integrations represent the extractive model, driving user churn. Good UX aligns the needs of the business with the agency of the user, replacing dark patterns with intentional, respectful design.</p>
             </div>
 
-            <div class="pillar-card">
+            <div class="tab-panel" id="panel-ia" role="tabpanel" tabindex="0" aria-labelledby="tab-ia">
                 <h2>Content & Information Architecture</h2>
-                <p><strong>Intuitive Navigation.</strong> Good IA is inherently sustainable. When users can easily find what they need through logical structures, there is no need for high-compute AI chatbots to act as band-aids for poor design.</p>
+                <p>Good Information Architecture (IA) is inherently sustainable. When a digital environment's navigation is logical and predictable, users can execute their goals quickly without getting lost in algorithmic loops or requiring high-compute AI assistants to guide them.</p>
+                <p style="margin-top: 1rem;">Structure should always precede decoration. By grouping related functions and establishing clear hierarchies, we empower users to be self-sufficient. This respects both their time and our server resources.</p>
             </div>
 
-            <div class="pillar-card">
+            <div class="tab-panel" id="panel-systems" role="tabpanel" tabindex="0" aria-labelledby="tab-systems">
                 <h2>Systems Design & Engineering</h2>
-                <p><strong>Maintainable Environments.</strong> Building clean, modular architectures reduces technical debt. We construct reliable infrastructures that prioritize data privacy, efficient resource allocation, and long-term stability.</p>
+                <p>A well-architected system is easier to maintain, requiring fewer operational resources over its lifecycle. As DevOps architects, we prioritize clean, modular codebases that mitigate technical debt.</p>
+                <p style="margin-top: 1rem;">Ethical systems design also means building privacy directly into the architecture. Instead of retrofitting security to protect harvested data, we build environments that minimize data collection by default, ensuring the platform remains a safe habitat for its inhabitants.</p>
             </div>
         </div>
 
@@ -324,6 +369,7 @@
     </section>
 
     <script>
+        // --- 1. HIDE ANNOYING ELEMENTS ON SCROLL ---
         window.addEventListener('scroll', () => {
             const banner = document.querySelector('.cookie-banner');
             const modal = document.getElementById('annoying-modal');
@@ -339,6 +385,23 @@
                 modal.style.display = 'block';
                 chatbot.style.display = 'block'; 
             }
+        });
+
+        // --- 2. ACCESSIBLE TABS LOGIC ---
+        const tabs = document.querySelectorAll('.tab-button');
+        const panels = document.querySelectorAll('.tab-panel');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Deactivate all
+                tabs.forEach(t => t.setAttribute('aria-selected', 'false'));
+                panels.forEach(p => p.removeAttribute('data-active'));
+
+                // Activate the clicked one
+                tab.setAttribute('aria-selected', 'true');
+                const panelId = tab.getAttribute('aria-controls');
+                document.getElementById(panelId).setAttribute('data-active', 'true');
+            });
         });
     </script>
 </body>
