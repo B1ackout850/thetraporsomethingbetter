@@ -12,7 +12,6 @@
             --symbiotic-bg: #121212; 
             --symbiotic-text: #e0e0e0;
             --accent: #4caf50;
-            --focus-outline: 3px solid #4caf50; 
         }
 
         * {
@@ -24,22 +23,18 @@
 
         html { scroll-behavior: smooth; }
 
-        *:focus-visible {
-            outline: var(--focus-outline);
-            outline-offset: 2px;
-        }
-
         /* --- THE TRAP (Extractive Model) --- */
         #the-trap {
             min-height: 180vh; 
             background: var(--trap-bg);
             background-size: 400% 400%;
-            animation: gradientNoise 3s ease infinite;
+            animation: gradientNoise 3s ease infinite; /* Sped up the chaos */
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 6rem 1rem 2rem 1rem;
             position: relative;
+            overflow: hidden;
         }
 
         @keyframes gradientNoise {
@@ -48,6 +43,7 @@
             100% { background-position: 0% 50%; }
         }
 
+        /* Fake Navigation Bar */
         .fake-nav {
             position: absolute;
             top: 0;
@@ -96,6 +92,7 @@
             width: 90%;
         }
 
+        /* The Obnoxious Pop-Up */
         .modal-popup {
             position: fixed;
             top: 30%;
@@ -111,7 +108,6 @@
             width: 90%;
             max-width: 350px;
             border: 5px solid #ff0000;
-            transition: opacity 0.3s ease;
         }
 
         .runaway-x {
@@ -126,38 +122,11 @@
             height: 30px;
             font-weight: bold;
             cursor: pointer;
-            transition: 0.2s;
+            transition: 0.2s; /* This allows it to dodge the mouse */
         }
 
-        .runaway-x:hover { transform: translate(-50px, 50px); }
-
-        .fake-chatbot {
-            position: fixed;
-            bottom: 80px;
-            right: 20px;
-            width: 280px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border: 2px solid #00ffcc;
-            z-index: 98;
-            color: black;
-            overflow: hidden;
-            transition: opacity 0.3s ease;
-        }
-
-        .chat-header {
-            background: #00ffcc;
-            color: #000;
-            font-weight: bold;
-            padding: 10px;
-            text-align: center;
-        }
-
-        .chat-body {
-            padding: 15px;
-            font-size: 0.9rem;
-            line-height: 1.4;
+        .runaway-x:hover {
+            transform: translate(-50px, 50px);
         }
 
         .cookie-banner {
@@ -172,15 +141,15 @@
             font-weight: bold;
             z-index: 100;
             box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
-            transition: opacity 0.3s ease;
         }
 
         /* --- THE TRANSITION --- */
         #transition {
-            background: linear-gradient(to bottom, #ff007f, var(--symbiotic-bg));
+            background-color: var(--symbiotic-bg);
             color: var(--symbiotic-text);
             text-align: center;
-            padding: 15vh 2rem 5vh 2rem;
+            padding: 10vh 2rem;
+            border-top: 5px solid #000;
         }
 
         #transition h1 { font-size: 2.5rem; margin-bottom: 1rem; color: #fff; }
@@ -190,83 +159,34 @@
             background-color: var(--symbiotic-bg);
             color: var(--symbiotic-text);
             min-height: 100vh;
-            padding: 2rem 2rem 6rem 2rem;
+            padding: 4rem 2rem;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        .tabs-container {
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            max-width: 1000px;
             width: 100%;
-            max-width: 800px;
             margin-top: 3rem;
         }
 
-        .tab-list {
-            display: flex;
-            flex-wrap: wrap;
-            border-bottom: 2px solid #333;
-            margin-bottom: 2rem;
-        }
+        @media (min-width: 768px) { .grid-container { grid-template-columns: repeat(2, 1fr); } }
 
-        .tab-button {
-            background: transparent;
-            color: #888;
-            border: none;
-            padding: 1rem 1.5rem;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .tab-button[aria-selected="true"] {
-            color: var(--accent);
-            border-bottom: 3px solid var(--accent);
-        }
-
-        .tab-button:hover { color: #fff; }
-
-        .tab-panel {
-            display: none;
+        .pillar-card {
             background: #1e1e1e;
-            padding: 2.5rem;
-            border-radius: 8px;
-            line-height: 1.8;
             border-left: 4px solid var(--accent);
+            padding: 2rem;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
         }
 
-        .tab-panel[data-active="true"] { display: block; }
-
-        .tab-panel h2 { color: #fff; margin-bottom: 1rem; font-size: 1.8rem; }
-        
-        .placeholder-img {
-            width: 100%;
-            height: 200px;
-            background: #333;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #888;
-            margin: 1.5rem 0;
-            border-radius: 4px;
-        }
-
-        .references {
-            width: 100%;
-            max-width: 800px;
-            margin-top: 4rem;
-            padding-top: 2rem;
-            border-top: 1px solid #333;
-            font-size: 0.9rem;
-            color: #aaa;
-        }
-
-        .references h3 { color: #fff; margin-bottom: 1rem; }
-        .references p { margin-bottom: 0.8rem; padding-left: 2em; text-indent: -2em; }
-        .references a { color: var(--accent); text-decoration: none; }
-        .references a:hover { text-decoration: underline; }
-
+        .pillar-card:hover { transform: translateY(-5px); }
+        .pillar-card h2 { color: #fff; margin-bottom: 1rem; font-size: 1.5rem; }
+        .pillar-card p { line-height: 1.6; color: #b0b0b0; }
     </style>
 </head>
 <body>
@@ -283,4 +203,76 @@
             <button class="runaway-x" onclick="alert('Error: You must watch a 30 second unskippable ad to close this ad.')">X</button>
             <h2 style="margin-bottom: 10px; color: #ff0000;">WAIT! Don't scroll!</h2>
             <p style="margin-bottom: 15px; font-size: 0.9rem;">Sign up for our newsletter to receive 40 emails a day.</p>
-            <button class="trap-btn" style="background:
+            <button class="trap-btn" style="background: #4caf50; color: white;" onclick="alert('Thanks for your data!')">Accept All Offerings</button>
+            <button class="trap-btn" style="background: #ccc;" onclick="alert('Ticket Automatically Closed. Resolution: Working as intended.')">Submit Service Desk Ticket to Close</button>
+        </div>
+
+        <div class="noise-card">
+            <h2>💎 Premium Plus Tier 💎</h2>
+            <p style="margin: 15px 0; font-size: 0.9rem;">Subscribe for $29.99/mo! <br><br><i>*By clicking subscribe, you agree that we may alter this deal, remove features, and increase the price at any time without notifying you.</i></p>
+            <button class="trap-btn" onclick="alert('Processing Payment... Just kidding, we already charged you.')">Subscribe Now</button>
+            <button class="trap-btn" onclick="alert('Error: Cannot decline at this time.')">Decline</button>
+        </div>
+
+        <div class="noise-card" style="margin-top: 10vh;">
+            <h2>Sponsored Content</h2>
+            <p>We are tracking your eye movements to serve you better ads. Please blink to verify identity.</p>
+        </div>
+
+        <div class="cookie-banner">
+            WE VALUE YOUR PRIVACY (By selling it). ACCEPT ALL COOKIES TO CONTINUE SCROLLING!
+        </div>
+    </section>
+
+    <div id="transition">
+        <h1>Exhausting, isn't it?</h1>
+        <p>Let's build a better habitat. Scroll down to enter a symbiotic environment.</p>
+    </div>
+
+    <section id="the-symbiosis">
+        <div style="text-align: center; max-width: 800px;">
+            <h2 style="font-size: 2rem; color: #fff; margin-bottom: 1rem;">Digital Stewardship & DevOps</h2>
+            <p style="line-height: 1.8; font-size: 1.1rem;">A digital environment should be a place where users thrive, not a resource to be extracted. By aligning business goals with ethical architecture, we build platforms that are sustainable for both the user and the planet.</p>
+        </div>
+
+        <div class="grid-container">
+            <div class="pillar-card">
+                <h2>Ethics & Sustainability</h2>
+                <p><strong>Low-Compute UX & Grid-Aware Design.</strong> AI is powerful, but computationally expensive. We advocate for reducing generative AI usage to save water and energy, while scheduling intensive server updates during times of renewable energy surplus.</p>
+            </div>
+            
+            <div class="pillar-card">
+                <h2>User Experience & Visual Design</h2>
+                <p><strong>The Symbiotic Model.</strong> Compare Valve's user-first ecosystem to Microsoft's extractive subscription hikes. We prioritize intentional, friction-free design that respects the user's agency and goals, naturally driving loyalty instead of forcing it.</p>
+            </div>
+
+            <div class="pillar-card">
+                <h2>Content & Information Architecture</h2>
+                <p><strong>Intuitive Navigation.</strong> Good IA is inherently sustainable. When users can easily find what they need through logical structures, there is no need for high-compute AI chatbots to act as band-aids for poor design.</p>
+            </div>
+
+            <div class="pillar-card">
+                <h2>Systems Design & Engineering</h2>
+                <p><strong>Maintainable Environments.</strong> Building clean, modular architectures reduces technical debt. We construct reliable infrastructures that prioritize data privacy, efficient resource allocation, and long-term stability.</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Hide the annoying banners/modals once they reach the safe zone
+        window.addEventListener('scroll', () => {
+            const banner = document.querySelector('.cookie-banner');
+            const modal = document.getElementById('annoying-modal');
+            const transitionTop = document.getElementById('transition').getBoundingClientRect().top;
+            
+            if (transitionTop < window.innerHeight) {
+                banner.style.display = 'none';
+                modal.style.display = 'none';
+            } else {
+                banner.style.display = 'block';
+                modal.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
