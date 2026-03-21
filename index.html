@@ -28,7 +28,7 @@
             min-height: 180vh; 
             background: var(--trap-bg);
             background-size: 400% 400%;
-            animation: gradientNoise 3s ease infinite; /* Sped up the chaos */
+            animation: gradientNoise 3s ease infinite; 
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -122,7 +122,7 @@
             height: 30px;
             font-weight: bold;
             cursor: pointer;
-            transition: 0.2s; /* This allows it to dodge the mouse */
+            transition: 0.2s; 
         }
 
         .runaway-x:hover {
@@ -216,6 +216,22 @@
         .pillar-card:hover { transform: translateY(-5px); }
         .pillar-card h2 { color: #fff; margin-bottom: 1rem; font-size: 1.5rem; }
         .pillar-card p { line-height: 1.6; color: #b0b0b0; }
+
+        /* References Section */
+        .references {
+            width: 100%;
+            max-width: 1000px; /* Matches the grid width */
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        .references h3 { color: #fff; margin-bottom: 1rem; }
+        .references p { margin-bottom: 0.8rem; padding-left: 2em; text-indent: -2em; /* APA hanging indent */ }
+        .references a { color: var(--accent); text-decoration: none; }
+        .references a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
@@ -292,24 +308,36 @@
                 <p><strong>Maintainable Environments.</strong> Building clean, modular architectures reduces technical debt. We construct reliable infrastructures that prioritize data privacy, efficient resource allocation, and long-term stability.</p>
             </div>
         </div>
+
+        <div class="references">
+            <h3>References</h3>
+            <p>Carbon Aware. (n.d.). <i>Carbon aware primer</i>. Retrieved from <a href="https://www.carbonaware.dev/blog/carbon-aware-primer" target="_blank">https://www.carbonaware.dev/blog/carbon-aware-primer</a></p>
+            
+            <p>Design Bootcamp. (n.d.). <i>Designing sustainable user experiences: The intersection of UX and environmental responsibility in IT</i>. Medium. Retrieved from <a href="https://medium.com/design-bootcamp/designing-sustainable-user-experiences-the-intersection-of-ux-and-environmental-responsibility-in-ef8fb989d12a" target="_blank">https://medium.com/design-bootcamp/designing-sustainable-user-experiences-the-intersection-of-ux-and-environmental-responsibility-in-ef8fb989d12a</a></p>
+            
+            <p>IdentityE2E. (n.d.). <i>The impact of visual design on user experience</i>. Retrieved from <a href="https://www.identitye2e.com/insight/the-impact-of-visual-design-on-user-experience" target="_blank">https://www.identitye2e.com/insight/the-impact-of-visual-design-on-user-experience</a></p>
+            
+            <p>UX Planet. (n.d.). <i>Information architecture design: A step-by-step guide</i>. Retrieved from <a href="https://uxplanet.org/information-architecture-design-a-step-by-step-guide-41dcd4405ee3" target="_blank">https://uxplanet.org/information-architecture-design-a-step-by-step-guide-41dcd4405ee3</a></p>
+            
+            <p>XDA Developers. (n.d.). <i>Valve Steam monopoly: Real gamers chose it</i>. Retrieved from <a href="https://www.xda-developers.com/valve-steam-monopoly-real-gamers-chose/#:~:text=Under%20U.S.%20law%2C%20having%20a,through%20underhanded%20or%20predatory%20tactics" target="_blank">https://www.xda-developers.com/valve-steam-monopoly-real-gamers-chose/</a></p>
+        </div>
     </section>
 
     <script>
-        // Hide the annoying banners/modals/chatbot once they reach the safe zone
         window.addEventListener('scroll', () => {
             const banner = document.querySelector('.cookie-banner');
             const modal = document.getElementById('annoying-modal');
-            const chatbot = document.getElementById('fake-chatbot'); // Select the chatbot
+            const chatbot = document.getElementById('fake-chatbot'); 
             const transitionTop = document.getElementById('transition').getBoundingClientRect().top;
             
             if (transitionTop < window.innerHeight) {
                 banner.style.display = 'none';
                 modal.style.display = 'none';
-                chatbot.style.display = 'none'; // Hide the chatbot
+                chatbot.style.display = 'none'; 
             } else {
                 banner.style.display = 'block';
                 modal.style.display = 'block';
-                chatbot.style.display = 'block'; // Show the chatbot
+                chatbot.style.display = 'block'; 
             }
         });
     </script>
