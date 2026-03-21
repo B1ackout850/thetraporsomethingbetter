@@ -129,6 +129,35 @@
             transform: translate(-50px, 50px);
         }
 
+        /* Fake AI Chatbot */
+        .fake-chatbot {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 280px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 2px solid #00ffcc;
+            z-index: 98;
+            color: black;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: #00ffcc;
+            color: #000;
+            font-weight: bold;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .chat-body {
+            padding: 15px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
         .cookie-banner {
             position: fixed;
             bottom: 0;
@@ -219,6 +248,13 @@
             <p>We are tracking your eye movements to serve you better ads. Please blink to verify identity.</p>
         </div>
 
+        <div class="fake-chatbot" id="fake-chatbot">
+            <div class="chat-header">✨ AI Assistant ✨</div>
+            <div class="chat-body">
+                <p>Hello! I was put here to cover up for the complete lack of effort put into the information architecture of this page. How can I confidently misunderstand your query today?</p>
+            </div>
+        </div>
+
         <div class="cookie-banner">
             WE VALUE YOUR PRIVACY (By selling it). ACCEPT ALL COOKIES TO CONTINUE SCROLLING!
         </div>
@@ -259,18 +295,21 @@
     </section>
 
     <script>
-        // Hide the annoying banners/modals once they reach the safe zone
+        // Hide the annoying banners/modals/chatbot once they reach the safe zone
         window.addEventListener('scroll', () => {
             const banner = document.querySelector('.cookie-banner');
             const modal = document.getElementById('annoying-modal');
+            const chatbot = document.getElementById('fake-chatbot'); // Select the chatbot
             const transitionTop = document.getElementById('transition').getBoundingClientRect().top;
             
             if (transitionTop < window.innerHeight) {
                 banner.style.display = 'none';
                 modal.style.display = 'none';
+                chatbot.style.display = 'none'; // Hide the chatbot
             } else {
                 banner.style.display = 'block';
                 modal.style.display = 'block';
+                chatbot.style.display = 'block'; // Show the chatbot
             }
         });
     </script>
